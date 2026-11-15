@@ -15,6 +15,7 @@ import { SiteHeader } from "@/components/site/site-header";
 import { SiteFooter } from "@/components/site/site-footer";
 import { CommandSearch } from "@/components/site/command-search";
 import { Toaster } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
@@ -133,13 +134,15 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <SiteHeader />
-      <main>
-        <Outlet />
-      </main>
-      <SiteFooter />
-      <CommandSearch />
-      <Toaster position="bottom-center" />
+      <TooltipProvider delayDuration={200}>
+        <SiteHeader />
+        <main>
+          <Outlet />
+        </main>
+        <SiteFooter />
+        <CommandSearch />
+        <Toaster position="bottom-center" />
+      </TooltipProvider>
     </QueryClientProvider>
   );
 }
