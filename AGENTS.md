@@ -28,3 +28,9 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+- All document content (names, links, fees, steps) lives in `src/data/documents.ts`; cards, guide pages, tracker and the AI prompt all read from it — edit data there, never inline in components.
+- Tracker progress, date of birth and Saathi chat threads are stored in browser localStorage (no login); chat threads each have a `/assistant/$threadId` page rendered client-only (`ssr: false`).
+- Saathi AI streams through the server route `src/routes/api/chat.ts` (Lovable AI Gateway, Responses API); voice in/out uses the browser Web Speech API so it costs nothing extra.
+- Design tokens (Midnight Gold palette, fonts, gold/guilloche/certificate utilities, button variants gold/glass/teal) live in `src/styles.css` and `src/components/ui/button.tsx`; components use only those tokens.
